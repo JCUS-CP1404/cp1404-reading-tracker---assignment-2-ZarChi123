@@ -20,9 +20,9 @@ class Book:
             raise ValueError
 
     def __str__(self):
-        """String formatting """
-        return '{0} by {1},{2} pages {3}'.format(self.title or '"Empty Book', self.author or 'Unknown Author',
-                                                 self.pages, '(completed)' if self.is_completed else '', )
+        return '{0} by {1}, {2} pages {3}'.format(self.title or '"Empty Book with Unknown Title "',
+                                                  self.author or 'Unknown Author', self.pages,
+                                                  '(completed)' if self.is_completed else '', )
 
     def mark_completed(self):
         """Mark the book as completed"""
