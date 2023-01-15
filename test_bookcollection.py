@@ -27,6 +27,13 @@ def run_tests():
     print("Test sorting - author:")
     book_collection.sort("author")
     print(book_collection)
+    book_collection.sort("title")
+    print(book_collection)
+    book_collection.sort("pages")
+    print(book_collection)
+    book_collection.sort("is_completed")
+    print(book_collection)
+
     # TODO: Add more sorting tests
 
     # TODO: Test get_required_pages()
