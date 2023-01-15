@@ -85,6 +85,7 @@ class BookCollection:
 
     def display_quotes(self, filename=''):
         """Display random quotes after the program end"""
+        self.filename = filename
         try:
             with open(filename, "r", encoding="utf-8-sig") as quotes_file:
                 quotes = quotes_file.readlines()
