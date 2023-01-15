@@ -69,9 +69,16 @@ def run_tests():
     print(another_new_book.is_long())
 
 
+    print("\nGet csv line Test:")
+    new_book = Book("The Practice of Computing Using Python", "Punch and Enbody", 792, True)
+    assert new_book.convert_str_to_csv() == 'The Practice of Computing Using Python,Punch and Enbody,792,c'
 
-    # Test mark_required()
+    another_new_book = Book("The Practice of Computing Using Python", "Punch and Enbody", 792, False)
+    assert another_new_book.convert_str_to_csv() == 'The Practice of Computing Using Python,Punch and Enbody,792,r'
 
+    print(new_book)
+    print(another_new_book)
+    print(default_book)
 
 
 run_tests()
