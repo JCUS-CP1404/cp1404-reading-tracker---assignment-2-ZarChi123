@@ -100,3 +100,35 @@ class BookCollection:
     def sort(self, key):
         """Sort books in collection by field."""
         self.books.sort(key=attrgetter(key, BookCollection.TITLE))
+
+    def get_required_pages(self):
+        """Get the required number of pages."""
+        # Total number of pages to read
+        page_nums = 0
+        for book in self.books:
+            # Count pages that you need to read
+            if not book.is_completed:
+                page_nums += book.pages
+        return page_nums
+
+    def get_required_books(self):
+        """Get the required number of books."""
+        # Total number of books to read
+        book_nums = 0
+        for book in self.books:
+            # Count books that you need to read
+            if not book.is_completed:
+                book_nums += 1
+        return book_nums
+
+    def __len__(self):
+        """Returns length of collection."""
+        return len(self.books)
+
+    def __getitem__(self, key):
+        """Returns book from collection."""
+        return self.books[key]
+
+    def __iter__(self):
+        """PyCharm requirements."""
+        return iter(self.books)

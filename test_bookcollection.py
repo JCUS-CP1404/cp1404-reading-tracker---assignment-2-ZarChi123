@@ -34,15 +34,48 @@ def run_tests():
     book_collection.sort("is_completed")
     print(book_collection)
 
-    # TODO: Add more sorting tests
-
-    # TODO: Test get_required_pages()
     print("Test get_required_pages():")
     new_book_collection = BookCollection()
+    print("Add required book")
+    new_book_collection.add_book(Book("War and Peace", "William Shakespeare", 999, False))
+    assert new_book_collection.get_required_pages() == 999
+    assert new_book_collection.get_required_books() == 1
+    print(new_book_collection)
+    print("\n Add required book")
+    new_book_collection.add_book(Book("The 360 Degree Leader", "John Maxwell", 369, False))
+    assert new_book_collection.get_required_pages() == 1368
+    assert new_book_collection.get_required_books() == 2
+    print(new_book_collection)
+    print("\n Add completed book")
+    new_book_collection.add_book(Book("In Search of Lost Time", "Marcel Proust", 93, True))
+    assert new_book_collection.get_required_pages() == 1368
+    assert new_book_collection.get_required_books() == 2
+    print(new_book_collection)
 
-    # TODO: Test saving books (check CSV file manually to see results)
+    print("\nTest saving books:")
+    book_collection.sort("author")
+    book_collection.save_books('book_collection.csv')
+    print(book_collection)
+    new_book_collection.save_books("new_book_collection.csv")
+    print(new_book_collection)
 
-    # TODO: Add more tests, as appropriate
+    # Test the max_string length
+    # Testing with book collection csv
+    print("\nTest max_string_length():")
+    book_collection.sort("is_completed")
+    # print(book_collection)
+    assert book_collection.max_string_length(book_collection.TITLE) == 38
+    assert book_collection.max_string_length(book_collection.AUTHOR) == 19
+    assert book_collection.max_string_length(book_collection.PAGES) == 3
+    print(book_collection)
+
+    # Test the max string length for new book collection
+    # Testing with new book collection csv
+
+    assert new_book_collection.max_string_length(new_book_collection.TITLE) == 22
+    assert new_book_collection.max_string_length(new_book_collection.AUTHOR) == 19
+    assert new_book_collection.max_string_length(book_collection.PAGES) == 3
+    print(new_book_collection)
 
 
 run_tests()
