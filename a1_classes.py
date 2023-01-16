@@ -49,20 +49,18 @@ def main():
                 print("Invalid menu choice")
             print(menu_string)
             choice = input(">>>").upper()
-
-        # When the user quits from the program
-
+            # When the user quits from the program
+        print("Finish")
+        # write_csv(FILENAME, books)
         books.save_books(FILENAME)
-        random_quote = books.display_quotes("quotes.txt")
-        print("{} books saved to {}".format(len(books), FILENAME))
-        print(random_quote)
+        display_quotes()  # display quotes when the user quits
 
 
-# def display_quotes():
-#     """Display quotes after the user quit the program """
-#     quotes_file = open("quotes.txt", 'r', encoding='utf-8')
-#     quotes = quotes_file.readlines()
-#     print(quotes[random.randint(0, len(quotes) - 1)])  # randomly generate quotes after the program end
+def display_quotes():
+    """Display quotes after the user quit the program """
+    quotes_file = open("quotes.txt", 'r', encoding='utf-8')
+    quotes = quotes_file.readlines()
+    print(quotes[random.randint(0, len(quotes) - 1)])  # randomly generate quotes after the program end
 
 
 # def list_books(books):

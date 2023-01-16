@@ -83,16 +83,6 @@ class BookCollection:
         except FileNotFoundError:
             print(f"The file \"{filename}\" isn't found.")
 
-    def display_quotes(self, filename=''):
-        """Display random quotes after the program end"""
-        self.filename = filename
-        try:
-            with open(filename, "r", encoding="utf-8-sig") as quotes_file:
-                quotes = quotes_file.readlines()
-                random_quote = quotes[random.randint(0, len(quotes) - 1)]
-                return random_quote
-        except FileNotFoundError:
-            print(f"The file \"{filename}\" isn't found.")
 
     def add_book(self, book):
         """Add book in collection."""
