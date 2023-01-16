@@ -1,5 +1,4 @@
 """..."""
-"""..."""
 # Copy your first assignment to this file, then update it to use Book class
 # Optionally, you may also use BookCollection class
 
@@ -51,15 +50,19 @@ def main():
             print(menu_string)
             choice = input(">>>").upper()
 
-        write_csv(FILENAME, books)
-        display_quotes()
+        # When the user quits from the program
+
+        books.save_books(FILENAME)
+        random_quote = books.display_quotes("quotes.txt")
+        print("{} books saved to {}".format(len(books), FILENAME))
+        print(random_quote)
 
 
-def display_quotes():
-    """Display quotes after the user quit the program """
-    quotes_file = open("quotes.txt", 'r', encoding='utf-8')
-    quotes = quotes_file.readlines()
-    print(quotes[random.randint(0, len(quotes) - 1)])  # randomly generate quotes after the program end
+# def display_quotes():
+#     """Display quotes after the user quit the program """
+#     quotes_file = open("quotes.txt", 'r', encoding='utf-8')
+#     quotes = quotes_file.readlines()
+#     print(quotes[random.randint(0, len(quotes) - 1)])  # randomly generate quotes after the program end
 
 
 # def list_books(books):
@@ -95,16 +98,20 @@ def has_required_book(books):
 def mark_complete(books):
     """Mark a user selected book as complete"""
     if has_required_book(books):
-        list_books(books)
+        books.sort("author")
+        print(books)
         book_number = get_valid_book_number("Enter the number of a book to mark as completed", books)
         mark_book_index = book_number - 1
-        if books[mark_book_index][3] == "c":
-            print("The book is already completed")
+        book = books[mark_book_index]
+        if book.is_completed:
+            print("That book is already completed")
+
         else:
-            books[mark_book_index][3] = "c"
-            print(f"{books[mark_book_index][0]} by {books[mark_book_index][1]} completed!")
-    else:
+            book.mark_completed()
+            print(f"{book.title} by {book.author} completed!")
+
         print("No required books")
+
 
 def get_valid_book_number(prompt, books):
     """Get a valid book number  """
@@ -121,8 +128,10 @@ def add_books(books):
     book_title = get_valid_string("Title:").title()
     author = get_valid_string("Author:").title()
     pages = get_valid_number("Pages:")
-    new_book = [book_title, author, pages, "r"]
-    books.append(new_book)
+
+    new_book = Book(book_title, author, pages, "r")
+    books.add_book(new_book)
+
     print(f"{book_title} by {author},({pages}pages) added to the Reading Tracker")
     # print(books)
 
@@ -152,33 +161,32 @@ def get_valid_number(prompt):
     return input_string
 
 
-def get_books(filename, books):
-    """Read the book csv file and split them into separate details"""
-    try:
-        with open(filename, "r", encoding="utf-8-sig") as in_file:
-            for line in in_file:
-                # print(line)
-                # print(type(line))
-                book_details = line.strip().split(",")
-                books.append(list(book_details))
-                # print(book_details)
-                # print(type(book_details))
-    except FileNotFoundError:
-        print(f"The file \"{filename}\" was not found!")
+# def get_books(filename, books):
+#     """Read the book csv file and split them into separate details"""
+#     try:
+#         with open(filename, "r", encoding="utf-8-sig") as in_file:
+#             for line in in_file:
+#                 # print(line)
+#                 # print(type(line))
+#                 book_details = line.strip().split(",")
+#                 books.append(list(book_details))
+#                 # print(book_details)
+#                 # print(type(book_details))
+#     except FileNotFoundError:
+#         print(f"The file \"{filename}\" was not found!")
 
 
-def write_csv(filename, books):
-    """Write the output of book list into csv file"""
-    try:
-        with open(filename, 'w', encoding="utf-8-sig") as out_file:
-
-            for book in books:
-                row = ','.join(str(field) for field in book)
-                out_file.write(row + "\n")
-            print(f"{len(books)} books saved to {filename}")
-    except FileNotFoundError:
-        print(f"The file \"{filename}\" was not found!")
+# def write_csv(filename, books):
+#     """Write the output of book list into csv file"""
+#     try:
+#         with open(filename, 'w', encoding="utf-8-sig") as out_file:
+#
+#             for book in books:
+#                 row = ','.join(str(field) for field in book)
+#                 out_file.write(row + "\n")
+#             print(f"{len(books)} books saved to {filename}")
+#     except FileNotFoundError:
+#         print(f"The file \"{filename}\" was not found!")
 
 
 main()
-
