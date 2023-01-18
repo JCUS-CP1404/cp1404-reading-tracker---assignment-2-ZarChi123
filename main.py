@@ -48,6 +48,14 @@ class ReadingTrackerApp(App):
             """Label that display in the bottom of the GUI"""
             self.root.ids.bottom_label.text = bottom_label
 
+        def sort_book_list(self, key='author'):
+            """Sort the book list"""
+            if key.lower() == 'completed':
+                key = 'is_completed'
+            self.books.sort(key.lower())  # sort books
+
+
+
 
 if __name__ == '__main__':
     ReadingTrackerApp().run()
