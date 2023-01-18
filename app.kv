@@ -1,2 +1,59 @@
 # Create your Kivy layout in the kv language here
+<Widget>:
+    color:0.3,1,0.7,1
 BoxLayout:
+    book_sorter:book_sorter
+    book_list:book_list
+    top_label:top_label
+    bottom_label:bottom_label
+    BoxLayout:
+        orientation:"horizontal"
+        Boxlayout:
+           orientation:"vertical"
+           size_hint_x:1
+           Label:
+            text:"Sort by:"
+            size_hint_y:None
+            height:dp(60)
+           Spinner:
+            id:book_sorter
+            text:'Author'
+            height:dp(60)
+            size_hint_y:None
+            values:('Author','Title','Pages','Completed')
+            on_text:app.sort_book_list(book_sorter.text)
+            Label:
+                text:"Add New Book..."
+                size_hint_y:None
+                height:dp(90)
+            Label:
+                text:"Title"
+                size_hint_y:None
+                height:dp(60)
+            TextInput:
+                id:input_title
+                write_tab:False
+                height:dp(60)
+                size_hint_y:None
+            Label:
+                text:"Author"
+                size_hint_y:None
+                id:input_author
+                height:dp(60)
+            Label:
+                text:"Pages"
+                size_hint_y:None
+                height:dp(50)
+            TextInput:
+                write_tab:False
+                size_hint_y:None
+                height:dp(50)
+                id:input_pages
+            Button:
+                text:"Add Book"
+                size_hint_y:2
+                on_press:app.add_new_book(input_title,input_author,input_pages)
+            Button:
+                text:"Clear"
+                size_hint_y:2
+                on_press:app.clear_input_field(input_title,input_author,input_pages)
