@@ -3,14 +3,14 @@
     color:0.3,1,0.7,1
 BoxLayout:
     book_sorter:book_sorter
-    book_list:book_list
-    top_label:top_label
-    bottom_label:bottom_label
+    book_list: book_list
+    top_label: top_label
+    bottom_label: bottom_label
     BoxLayout:
-        orientation:"horizontal"
-        Boxlayout:
-           orientation:"vertical"
-           size_hint_x:1
+        orientation: "horizontal"
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_x: 1
            Label:
             text:"Sort by:"
             size_hint_y:None
@@ -57,3 +57,17 @@ BoxLayout:
                 text:"Clear"
                 size_hint_y:2
                 on_press:app.clear_input_field(input_title,input_author,input_pages)
+        BoxLayout:
+            orientation:"vertical"
+            size_hint_x:3
+            Label:
+                id:top_label
+                size_hint_y:None
+                height:50
+            BoxLayout:
+                orientation:'vertical'
+                id:book_list
+            Label:
+                id:bottom_label
+                height:50
+                size_hint_y:None
