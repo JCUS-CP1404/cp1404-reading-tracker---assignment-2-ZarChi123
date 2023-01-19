@@ -139,6 +139,13 @@ class BookButton(Button):
             self.top_label_text()
             self.display_bottom_label(f"{title} by {author},({pages}pages)added to Reading Tracker")
             self.sort_book_list(self.root.ids.sorter.text)
+            self.clear_input_fields(input_title, input_author, input_pages)
+        @staticmethod
+        def clear_input_fields(title,author,pages):
+            """Clear the user inputs fields of title,author and pages"""
+            title.text=''
+            author.text=''
+            pages.text=''
 
 
 if __name__ == '__main__':
