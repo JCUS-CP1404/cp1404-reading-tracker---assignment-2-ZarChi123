@@ -1,6 +1,7 @@
 # Create your Kivy layout in the kv language here
 <Widget>:
-    color:0.3,1,0.7,1
+    color: 1,1,1,1
+
 BoxLayout:
     book_sorter:book_sorter
     book_list: book_list
@@ -11,17 +12,17 @@ BoxLayout:
         BoxLayout:
             orientation: "vertical"
             size_hint_x: 1
-           Label:
-            text:"Sort by:"
-            size_hint_y:None
-            height:dp(60)
-           Spinner:
-            id:book_sorter
-            text:'Author'
-            height:dp(60)
-            size_hint_y:None
-            values:('Author','Title','Pages','Completed')
-            on_text:app.sort_book_list(book_sorter.text)
+            Label:
+                text:"Sort by:"
+                size_hint_y:None
+                height:dp(60)
+            Spinner:
+                id:book_sorter
+                text:'Author'
+                height:dp(60)
+                size_hint_y:None
+                values:('Author','Title','Pages','Completed')
+                on_text:app.sort_book_list(book_sorter.text)
             Label:
                 text:"Add New Book..."
                 size_hint_y:None
@@ -31,24 +32,31 @@ BoxLayout:
                 size_hint_y:None
                 height:dp(60)
             TextInput:
-                id:input_title
-                write_tab:False
-                height:dp(60)
-                size_hint_y:None
+                write_tab: False
+                id: input_title
+                size_hint_y: None
+                height: dp(50)
             Label:
                 text:"Author"
                 size_hint_y:None
-                id:input_author
                 height:dp(60)
-            Label:
-                text:"Pages"
-                size_hint_y:None
-                height:dp(50)
+#
             TextInput:
                 write_tab:False
                 size_hint_y:None
                 height:dp(50)
+                id:input_author
+            Label:
+                text:"Pages:"
+                size_hint_y:None
+                height:dp(50)
+
+            TextInput:
+                write_tab:False
                 id:input_pages
+                size_hint_y:None
+                height:dp(50)
+
             Button:
                 text:"Add Book"
                 size_hint_y:2
