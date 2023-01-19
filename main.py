@@ -133,6 +133,12 @@ class BookButton(Button):
                 self.display_bottom_label("Pages must be >0")
                 return
 
+            self.sort_book_list()
+            title=title +" "
+            self.books.add_book(Book(title,author,pages))
+            self.top_label_text()
+            self.display_bottom_label(f"{title} by {author},({pages}pages)added to Reading Tracker")
+            self.sort_book_list(self.root.ids.sorter.text)
 
 
 if __name__ == '__main__':
