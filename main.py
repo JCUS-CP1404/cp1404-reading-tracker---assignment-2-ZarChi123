@@ -86,6 +86,7 @@ class BookButton(Button):
             self.root.ids.book_list.clear_widgets()  # clear widgets
             book_list = []
 
+
             def change_state(button):
                 for selected_book in book_list:  # matching the button.text and clicked book
                     if selected_book.title in button.text:
@@ -113,4 +114,25 @@ class BookButton(Button):
                                                               {'normal': COMPLETED_COLOR, 'down': REQUIRED_COLOR}[
                                                                   self.state]
                                                               ))
+        def add_new_book(self ,input_title,input_author,input_pages):
+            """Handle Add New Book"""
+            title,author,pages=map(str.strip,(input_title.text,input_author.text,input_pages))
+
+            #check if all fields are filled
+            if not title or not author or not pages:
+                self.display_bottom_label("All fields must be completed")
+                return
+            #check if the input pages are valid
+            try:
+                pages=int(pages)
+            except ValueError:
+                self.display_bottom_label("Please enter a valid number")
+                return
+            #check if the input page is greater than 0
+            if pages<1:
+                self.display_bottom_label("Pages must be >0")
+                return
+
+
+
 if __name__ == '__main__':
