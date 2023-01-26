@@ -3,8 +3,6 @@ from operator import attrgetter
 from book import Book
 import random
 
-# Create your BookCollection class in this file
-
 TITLE_INDEX = 0
 AUTHOR_INDEX = 1
 PAGES_INDEX = 2
@@ -62,16 +60,12 @@ class BookCollection:
         return length
 
     def load_books(self, filename=''):
-
         """Read csv file and creates list of books."""
 
         self.filename = filename
-        try:
-            with open(filename, 'r', encoding='UTF-8') as book_file:
-                for line in book_file.readlines():
-                    self.books.append(Book(*line.rstrip().split(',')))
-        except FileNotFoundError:
-            print(f"The file \"{filename}\" isn't found.")
+        with open(filename, 'r', encoding='UTF-8') as book_file:
+            for line in book_file.readlines():
+                self.books.append(Book(*line.rstrip().split(',')))
 
     def save_books(self, filename=''):
         """Save csv file for list of books."""
@@ -82,7 +76,6 @@ class BookCollection:
                     print(book.convert_str_to_csv(), file=book_file)
         except FileNotFoundError:
             print(f"The file \"{filename}\" isn't found.")
-
 
     def add_book(self, book):
         """Add book in collection."""

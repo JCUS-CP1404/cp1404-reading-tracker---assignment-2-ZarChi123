@@ -1,6 +1,3 @@
-"""..."""
-# Copy your first assignment to this file, then update it to use Book class
-# Optionally, you may also use BookCollection class
 
 """
 Assignment 1
@@ -88,7 +85,7 @@ def display_quotes():
 def has_required_book(books):
     """Check if there is any required book"""
     for book in books:
-        if book[3] == "r":
+        if not book.is_completed:
             return True
     return False
 
