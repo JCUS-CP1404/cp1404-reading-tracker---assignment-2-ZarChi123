@@ -33,7 +33,7 @@ I use the lecture slides uploaded in learnJCU, for further understanding I also 
 The another great resource that helped me with the GUI part was the kivy demos which my lecturer has uploaded which samples the different parts of kivy such as using spinner and creating buttons.Based on these demos, I have constructed my own kivy/GUI program.
 
 ## 7. Describe the main challenges or obstacles you faced and how you overcame them.
-The challenge that I faced mainly was that my program keeps crashing in the main.py while working on my GUI program.
+The challenge that I faced mainly was that my program keeps crashing in the main.py while working on my GUI program which I used exception handling to fix these errors.Another challenge I faced was debugging the code for exception handling was that when the file name has been changed to another, and when the GUI is being run again, the exception handling does not work which took me some time to figure out why the text"unable to look book.csv" could not show even though there was no obvious errors in the code,no pycharm alerts or any errors in console.I try to change the code abit to fix but I have to trace back every single detail concerning with the def build function.To my surprise, the real route of the problem was that there were two exception being handled for the same task in the book collection.py which I tried removing and see if it works again in the GUI and it works. I learned that there cannot be two exception handling for the same task for a program
 
 ## 8. Briefly describe your experience using classes and if/how they improved your code.
 ...
